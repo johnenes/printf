@@ -10,6 +10,7 @@ int print_HEX_extra(unsigned int num)
 	int *array;
 	int loop_count, track_hex_digit = 0;
 	unsigned int temp = num;
+
 	while (num / 16 != 0)
 	{
 		num =  num / 16;

@@ -46,9 +46,10 @@ _putchar(last + '0');
 return (i);
 }
 
+
 #include "main.h"
 /**
- * print_int - print integer
+ * print_dec - print decimal
  * @args: argument to print
  * Return: number of character printed
  *
@@ -86,6 +87,7 @@ while (exp > 0)
 digit = num / exp;
 _putchar(digit + '0');
 num = num - (digit * exp);
+
 exp = exp / 10;
 i++;
 }

@@ -1,4 +1,9 @@
 #include "main.h"
+/**
+ * print_exc_string - custom conversion specifier:S
+ * @list_args: argument
+ * Return: len
+ */
 
 int print_exc_string(va_list list_args)
 {
@@ -20,7 +25,7 @@ int print_exc_string(va_list list_args)
 			if (value < 16)
 			{
 				_putchar('0');
-				len++;	
+				len++;
 			}
 			len = len + print_HEX_extra(value);
 		}
@@ -31,7 +36,5 @@ int print_exc_string(va_list list_args)
 		}
 	}
 	return (len);
-
-
 
 }

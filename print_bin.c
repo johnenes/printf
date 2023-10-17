@@ -8,23 +8,22 @@
 
 int print_bin(va_list list_of_arg)
 {
-    int count = 0;
+	int loop;
+	int count = 0;
+	unsigned int output = va_arg(list_of_arg, unsigned int);
 
-    unsigned int output = va_arg(list_of_arg, unsigned int);
+	for ( loop = 31; loop >= 0; loop--)
+	{
+		int bit = (output >> loop) & 1;
 
-    for (int loop = 31; loop >= 0; loop--)
-    {
-        int bit = (output >> loop) & 1;
-        _putchar(bit + '0');
-        count++;
-    }
-
-    if (count == 0)
-    {
-        count++;
-        _putchar('0');
-    }
-
-    return count;
+		_putchar(bit + '0');
+		count++;
+	}
+	if (count == 0)
+	{
+		count++;
+		_putchar('0');
+	}
+	return (count);
 }
 

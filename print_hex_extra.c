@@ -1,16 +1,17 @@
 #include "main.h"
 
 /**
- * print_hex - convert octal
- * @list_arg: list of argument
+ * print_hex_extra - custom conversion specifier:S
+ * @num: list of argument
  * Return: count
  */
 
 int print_hex_extra(unsigned long int num)
 {
 long int *array;
-long int loop_count, track_hex_digit = 0; 
+long int loop_count, track_hex_digit = 0;
 unsigned long  int temp = num;
+
 while (num / 16 != 0)
 {
 num =  num / 16;
@@ -33,4 +34,4 @@ _putchar(array[loop_count] + '0');
 }
 free(array);
 return (loop_count);
-} 
+}

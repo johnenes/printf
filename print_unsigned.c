@@ -11,6 +11,7 @@ int print_unsigned(va_list args)
 	int num;
 	int last =  n % 10, digit, exp = 1;
 	int i = 1;
+
 	n = n / 10;
 	num = n;
 

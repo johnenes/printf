@@ -11,6 +11,7 @@ int print_oct(va_list list_arg)
 	int loop_count, track_oct_digit = 0;
 	unsigned int num = va_arg(list_arg, unsigned int);
 	unsigned int temp = num;
+
 	while (num / 8 != 0)
 	{
 		num =  num / 8;
