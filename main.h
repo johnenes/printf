@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdarg.h>
@@ -37,14 +37,4 @@ int print_rot13(va_list val);
 int print_oct(va_list list_arg);
 int print_exc_string(va_list list_args);
 
-=======
-#ifndef _MAIN_H_
-#define _MAIN_H_
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-int printfputchar(char c);
-int _printf(const char *format, ...);
->>>>>>> 0d79d3ce299e06485471930b0db1a9e42c40cdd5
 #endif
