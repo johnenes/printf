@@ -1,39 +1,26 @@
 #include "main.h"
-#include <stdio.h>
-/**
- * _strlen  - Return the length of a string
- * @str: string pointer
- *
- * Return: 1
- */
-
-int _strlen(char *str)
-{
-
-int length = 0;
-
-while (str[length] != '\0')
-{
-length++;
-}
-return (length);
-}
 
 /**
- * _strlenc - strlen function applying to constant char pointer
- * @str: char pointer
- * Return: (i);
+ * print_str - writes the string to stdout
+ * @arguments: input string
+ * @buf: buffer pointer
+ * @ibuf: index for buffer pointer
+ * Return: On success 1.
  */
-
-
-int _strlenc(const char *str)
+int print_str(va_list arguments, char *buf, unsigned int ibuf)
 {
-int length = 0;
+	char *str;
+	unsigned int i;
+	char nill[] = "(null)";
 
-while (str[length] != '\0')
-{
-length++;
-}
-return (length);
-
+	str = va_arg(arguments, char *);
+	if (str == NULL)
+	{
+		for (i = 0; nill[i]; i++)
+			ibuf = handl_buf(buf, nill[i], ibuf);
+		return (6);
+	}
+	for (i = 0; str[i]; i++)
+		ibuf = handl_buf(buf, str[i], ibuf);
+	return (i);
 }
