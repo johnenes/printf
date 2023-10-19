@@ -1,38 +1,45 @@
 #include "main.h"
 
 /**
- * print_hex - convert octal
- * @list_arg: list of argument
- * Return: count
+ * prinhhex - prints a short decimal in hexadecimal
+ * @arguments: input string
+ * @buf: buffer pointer
+ * @ibuf: index for buffer pointer
+ * Return: number of chars printed
  */
-int print_hex(va_list list_arg)
+int prinhhex(va_list arguments, char *buf, unsigned int ibuf)
 {
-	int *array;
-	int loop_count, track_hex_digit = 0;
-	unsigned int num = va_arg(list_arg, unsigned int);
-	unsigned int temp = num;
+	short int int_input, i, isnegative, count, first_digit;
+	char *hexadecimal, *binary;
 
-	while (num / 16 != 0)
+	int_input = va_arg(arguments, int);
+	isnegative = 0;
+	if (int_input == 0)
 	{
-		num =  num / 16;
-		track_hex_digit++;
+		ibuf = handl_buf(buf, '0', ibuf);
+		return (1);
 	}
-	track_hex_digit++;
+	if (int_input < 0)
+	{
+		int_input = (int_input * -1) - 1;
+		isnegative = 1;
+	}
 
-
-	array = malloc(sizeof(int) * track_hex_digit);
-	for (loop_count = 0; loop_count < track_hex_digit; loop_count++)
+	binary = malloc(sizeof(char) * (16 + 1));
+	binary = fill_binary_array(binary, int_input, isnegative, 16);
+	hexadecimal = malloc(sizeof(char) * (4 + 1));
+	hexadecimal = fill_hex_array(binary, hexadecimal, 0, 4);
+	for (first_digit = i = count = 0; hexadecimal[i]; i++)
 	{
-		array[loop_count] = temp % 16;
-		temp = temp / 16;
+		if (hexadecimal[i] != '0' && first_digit == 0)
+			first_digit = 1;
+		if (first_digit)
+		{
+			ibuf = handl_buf(buf, hexadecimal[i], ibuf);
+			count++;
+		}
 	}
-	for (loop_count = track_hex_digit - 1; loop_count >= 0; loop_count++)
-	{
-		if (array[loop_count] > 9)
-			array[loop_count] = array[loop_count] + 39;
-		_putchar(array[loop_count] + '0');
-	}
-	free(array);
-	return (loop_count);
+	free(binary);
+	free(hexadecimal);
+	return (count);
 }
-

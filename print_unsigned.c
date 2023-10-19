@@ -1,46 +1,26 @@
 #include "main.h"
 /**
- * print_unsigned- prints integer
- * @args: argument to print
- * Return: number of characters printed
+ * print_unt - prints an unsigned int
+ * @arguments: number to print
+ * @buf: buffer pointer
+ * @ibuf: index for buffer pointer
+ * Return: number of chars printed.
  */
-
-int print_unsigned(va_list args)
+int print_unt(va_list arguments, char *buf, unsigned int ibuf)
 {
-	unsigned int n = va_arg(args, unsigned  int);
-	int num;
-	int last =  n % 10, digit, exp = 1;
-	int i = 1;
+	unsigned int int_in, int_temp, i, div;
 
-	n = n / 10;
-	num = n;
-
-	if (last < 0)
+	int_in = va_arg(arguments, unsigned int);
+	int_temp = int_in;
+	div = 1;
+	while (int_temp > 9)
 	{
-		_putchar('-');
-		num = -num;
-		n = -n;
-		last = -last;
-		i++;
+		div *= 10;
+		int_temp /= 10;
 	}
-	if (num > 0)
+	for (i = 0; div > 0; div /= 10, i++)
 	{
-		while (num / 10 != 0)
-		{
-			exp = exp * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (exp > 0)
-		{
-			digit = num / exp;
-			_putchar(digit + '0');
-
-			num = num - (digit * exp);
-			exp = exp / 10;
-			i++;
-		}
+		ibuf = handl_buf(buf, ((int_in / div) % 10) + '0', ibuf);
 	}
-	_putchar(last + '0');
 	return (i);
 }
