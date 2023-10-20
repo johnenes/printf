@@ -1,97 +1,42 @@
 #include "main.h"
+
 /**
- * print_int - print integer
- * @args: argument to print
- * Return: number of character printed
- *
+ * print_int - prints an integer
+ * @arguments: input string
+ * @buf: buffer pointer
+ * @ibuf: index for buffer pointer
+ * Return: number of chars printed.
  */
-
-int print_int(va_list args)
+int print_int(va_list arguments, char *buf, unsigned int ibuf)
 {
-int n = va_arg(args, int);
-int num, last =  n % 10, digit, exp = 1;
-int i = 1;
-n = n / 10;
-num = n;
+	int int_input;
+	unsigned int int_in, int_temp, i, div, isneg;
 
-if (last < 0)
-{
-_putchar('-');
-num = -num;
-n = -n;
-last = -last;
-i++;
-}
-if (num > 0)
-{
+	int_input = va_arg(arguments, int);
+	isneg = 0;
+	if (int_input < 0)
+	{
+		int_in = int_input * -1;
+		ibuf = handl_buf(buf, '-', ibuf);
+		isneg = 1;
+	}
+	else
+	{
+		int_in = int_input;
+	}
 
-while (num / 10 != 0)
-{
+	int_temp = int_in;
+	div = 1;
 
-exp = exp * 10;
-num = num / 10;
-}
-num = n;
+	while (int_temp > 9)
+	{
+		div *= 10;
+		int_temp /= 10;
+	}
 
-while (exp > 0)
-{
-digit = num / exp;
-_putchar(digit + '0');
-num = num - (digit * exp);
-exp = exp / 10;
-i++;
-}
-}
-_putchar(last + '0');
-return (i);
-}
-
-
-#include "main.h"
-/**
- * print_dec - print decimal
- * @args: argument to print
- * Return: number of character printed
- *
- */
-int print_dec(va_list args)
-{
-int n = va_arg(args, int);
-int num, last =  n % 10, digit, exp = 1;
-int i = 1;
-
-n = n / 10;
-num = n;
-
-if (last < 0)
-{
-_putchar('-');
-num = -num;
-n = -n;
-last = -last;
-i++;
-}
-if (num > 0)
-{
-
-while (num / 10 != 0)
-{
-
-exp = exp * 10;
-num = num / 10;
-}
-num = n;
-
-while (exp > 0)
-{
-digit = num / exp;
-_putchar(digit + '0');
-num = num - (digit * exp);
-
-exp = exp / 10;
-i++;
-}
-}
-_putchar(last + '0');
-return (i);
+	for (i = 0; div > 0; div /= 10, i++)
+	{
+		ibuf = handl_buf(buf, ((int_in / div) % 10) + '0', ibuf);
+	}
+	return (i + isneg);
 }
